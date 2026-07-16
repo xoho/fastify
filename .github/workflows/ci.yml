@@ -38,24 +38,16 @@ jobs:
       lint: true
 
   coverage-nix:
-    needs:
-      - quality-check
     permissions:
       contents: read
     uses: ./.github/workflows/coverage-nix.yml
 
   coverage-win:
-    needs:
-      - quality-check
     permissions:
       contents: read
     uses: ./.github/workflows/coverage-win.yml
 
   test-unit:
-    needs:
-      - quality-check
-      - coverage-nix
-      - coverage-win
     runs-on: ${{ matrix.os }}
     permissions:
       contents: read
@@ -147,10 +139,6 @@ jobs:
 
   test-pino-compat:
     name: Test pino compatibility
-    needs:
-      - quality-check
-      - coverage-nix
-      - coverage-win
     runs-on: ubuntu-latest
     permissions:
       contents: read
